@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   @@teams = {
-    a: 0,
-    b: 0,
-    c: 0,
-    d: 0
+    ruby: 0,
+    yii: 0,
+    symfony2: 0,
+    dotnet: 0,
+    django: 0
   }
   def index
     star = params[:star].to_sym
