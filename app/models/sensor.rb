@@ -1,6 +1,6 @@
 class Sensor
   def self.get_data
-    rows = IO.readlines("data1000.csv")
+    rows = IO.readlines("data10000.csv")
     rows
   end
 
@@ -55,7 +55,7 @@ class Sensor
     refs = [normal_measure, false_fail, real_fail, false_alert, real_alert]
     sensors = []
 
-    for i in 1..1000
+    for i in 1..10000
       sensor = []
       for j in 1..5
         sensor += refs[Random.rand(5)]
@@ -64,7 +64,7 @@ class Sensor
     end
 
     result = to_records(sensors)
-    f = File.open("data1000.csv", "w")
+    f = File.open("data10000.csv", "w")
     result.each do |row|
       f.write(row+"\n")
     end

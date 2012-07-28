@@ -12,7 +12,8 @@ class HomeController < ApplicationController
   def index
     star = params[:star].to_sym
     response_text = "#{DateTime.now.to_s},#{@@values[@@teams[star]]}"
-    puts response_text
+    puts "*" * 100
+    puts @@values.length
     render text: response_text
     if @@teams[star] < @@values.count-1
       @@teams[star] += 1
