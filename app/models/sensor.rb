@@ -1,6 +1,6 @@
 class Sensor
   def self.get_data
-    rows = IO.readlines("data.csv")
+    rows = IO.readlines("data111.csv")
     rows
   end
 
@@ -52,12 +52,19 @@ class Sensor
        80  17  90  10  11  15  23   1   3  20
     ]
 
-    sensor1 = normal_measure + false_fail + real_fail      + false_alert    + real_alert
-    sensor2 = false_fail     + real_alert + normal_measure + normal_measure + normal_measure
-    sensor3 = normal_measure + false_fail + false_fail     + normal_measure + normal_measure
+    refs = [normal_measure, false_fail, real_fail, false_alert, real_alert]
+    sensors = []
 
-    result = to_records([sensor1, sensor2, sensor3, sensor3, sensor1, sensor2, sensor2, sensor1, sensor3, sensor2])
-    f = File.open("data.csv", "w")
+    for i in 1..1000
+      sensor = []
+      for j in 1..5
+        sensor += refs[Random.rand(5)]
+      end
+      sensors << sensor
+    end
+
+    result = to_records(sensors)
+    f = File.open("data1000.csv", "w")
     result.each do |row|
       f.write(row+"\n")
     end
