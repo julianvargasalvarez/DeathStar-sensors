@@ -1,6 +1,6 @@
 class Sensor
   def self.get_data
-    rows = IO.readlines("data111.csv")
+    rows = IO.readlines("data1000.csv")
     rows
   end
 
