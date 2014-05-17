@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
   @@teams = {
-    ruby: 0,
-    yii: 0,
-    symfony2: 0,
-    dotnet: 0,
-    django: 0,
+    felipe: 0,
+    julian: 0,
+    jose: 0,
+    andres: 0,
     bender: 0
   }
   @@values ||= Sensor.get_data
