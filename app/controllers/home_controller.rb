@@ -8,12 +8,10 @@ class HomeController < ApplicationController
     bender: 0
   }
   @@values ||= Sensor.get_data
-  
+
   def index
     star = params[:star].to_sym
-    response_text = "#{DateTime.now.to_s},#{@@values[@@teams[star]]}"
-    puts "*" * 100
-    puts @@values.length
+    response_text = @@values[@@teams[star]]
     render text: response_text
     if @@teams[star] < @@values.count-1
       @@teams[star] += 1

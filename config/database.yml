@@ -3,7 +3,6 @@ default: &local_defaults
   host: localhost
   encoding: utf8
   username: postgres
-  password: fromthis
   pool: 5
   min_messages: ERROR
 
