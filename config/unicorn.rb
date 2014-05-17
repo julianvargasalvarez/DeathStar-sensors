@@ -4,9 +4,9 @@
 env = ENV["RAILS_ENV"] || "production"
 
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete documentation.
-worker_processes 33 # amount of unicorn workers to spin up
+worker_processes 1 # amount of unicorn workers to spin up
 
-APP_PATH = "~/deathstar/"
+APP_PATH = "/home/deploy/deathstar"
 
 listen "/tmp/deathstar.socket"
 
@@ -29,7 +29,7 @@ if env == "production"
 
   # feel free to point this anywhere accessible on the filesystem
   user 'deploy', 'root' # 'user', 'group'
-  shared_path = "/u/apps/fluvip/shared"
+  shared_path = "/home/deploy/deathstar"
 
   stderr_path "#{shared_path}/log/unicorn.stderr.log"
   stdout_path "#{shared_path}/log/unicorn.stdout.log"
@@ -38,6 +38,7 @@ end
 preload_app true
 
 before_fork do |server, worker|
+  old_pid = "/tmp/unicorn.deathstar.pid.oldbin"
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
@@ -45,7 +46,4 @@ before_fork do |server, worker|
       # someone else did our job for us
     end
   end
-end
-
-after_fork do |server, worker|
 end
